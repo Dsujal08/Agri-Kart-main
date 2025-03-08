@@ -19,7 +19,8 @@ import HomeFer from './Fertilizers/HomeFer';
 import Ferdetail from './Fertilizers/Ferdetail';
 import Brands from './cards/Brands';
 import BrandsPage from './cards/BrandsPage';
-
+import Services from './pages/Services'
+import ContactUs from './pages/ContactUs'
 const App = () => {
   return (
     <CartProvider>
@@ -33,7 +34,9 @@ const App = () => {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/sign" element={<Sign />} />
           <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/contact" element={<ContactUs />} />
 
           {/* Seeds Section */}
           <Route path="/seedsDetails" element={<SeedsDetails />} />

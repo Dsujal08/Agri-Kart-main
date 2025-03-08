@@ -8,17 +8,17 @@ import { FiMenu, FiX, FiUser, FiLogOut, FiCheckCircle } from "react-icons/fi";
 export default function Navbar() {
     const { userData, backendUrl, setUserData } = useContext(AppContent);
     const navigate = useNavigate();
-    
+
     const [showDropdown, setShowDropdown] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isLoggingOut, setIsLoggingOut] = useState(false);
-    
+
     const dropdownRef = useRef(null);
 
     const handleLogout = async () => {
         if (isLoggingOut) return;
-
         setIsLoggingOut(true);
+        setShowDropdown(false);
         try {
             await axios.post(`${backendUrl}/api/auth/logout`, {}, { withCredentials: true });
             setUserData(null);
@@ -32,6 +32,7 @@ export default function Navbar() {
     };
 
     const sendVerificationOtp = async () => {
+        setShowDropdown(false);
         try {
             const { data } = await axios.post(`${backendUrl}/api/auth/send-verify-otp`, {}, { withCredentials: true });
             if (data.success) {
@@ -55,7 +56,7 @@ export default function Navbar() {
     }, []);
 
     return (
-        <nav className="flex items-center justify-between h-20 w-full px-6 md:px-10 sticky top-0 bg-gradient-to-r from-green-500 to-green-700 shadow-lg z-50">
+        <nav className="flex items-center justify-between h-20 w-full px-6 md:px-10 sticky top-0 bg-gradient-to-r from-green-500 to-green-700 shadow-lg z-50 dark:bg-gray-900">
             {/* Logo */}
             <div
                 className="text-white font-extrabold text-3xl cursor-pointer"
@@ -66,17 +67,23 @@ export default function Navbar() {
 
             {/* Desktop Links */}
             <div className="hidden md:flex items-center space-x-6">
-                {["Home", "About", "Services", "Contact", "Blog"].map((item) => (
+                {[
+                    { name: "Home", path: "/" },
+                    { name: "About Us", path: "/about-us" },
+                    { name: "Services", path: "/services" },
+                    { name: "Contact", path: "/contact" },
+                    { name: "Blog", path: "/blog" }
+                ].map(({ name, path }) => (
                     <NavLink
-                        key={item}
-                        to={`/${item.toLowerCase()}`}
+                        key={path}
+                        to={path}
                         className={({ isActive }) =>
                             `hover:text-yellow-300 transition-all text-lg px-4 py-2 rounded-lg ${
                                 isActive ? "text-yellow-400 font-bold" : "text-white"
                             }`
                         }
                     >
-                        {item}
+                        {name}
                     </NavLink>
                 ))}
             </div>
@@ -93,19 +100,19 @@ export default function Navbar() {
                             {userData.name ? userData.name[0].toUpperCase() : <FiUser />}
                         </button>
                         {showDropdown && (
-                            <div className="absolute top-12 right-0 bg-white shadow-xl rounded-lg py-2 w-44 text-black z-10 animate-fade-in">
+                            <div className="absolute top-12 right-0 bg-white shadow-xl rounded-lg py-2 w-44 text-black z-10 animate-fade-in dark:bg-gray-800 dark:text-white">
                                 <ul className="text-sm">
                                     {!userData?.isAccountVerified && (
                                         <li
                                             onClick={sendVerificationOtp}
-                                            className="px-4 py-2 flex items-center gap-2 text-green-600 font-semibold hover:bg-gray-200 cursor-pointer"
+                                            className="px-4 py-2 flex items-center gap-2 text-green-600 font-semibold hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
                                         >
                                             <FiCheckCircle /> Verify Account
                                         </li>
                                     )}
                                     <li
                                         onClick={handleLogout}
-                                        className="px-4 py-2 flex items-center gap-2 text-red-500 hover:bg-gray-200 cursor-pointer"
+                                        className="px-4 py-2 flex items-center gap-2 text-red-500 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
                                     >
                                         <FiLogOut /> Logout
                                     </li>
@@ -136,16 +143,22 @@ export default function Navbar() {
             <div
                 className={`absolute top-20 left-0 w-full bg-green-700 text-white shadow-md flex flex-col items-center py-4 space-y-4 transition-all transform ${
                     mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5 pointer-events-none"
-                } md:hidden`}
+                } md:hidden dark:bg-gray-900 dark:text-white`}
             >
-                {["Home", "About", "Services", "Contact", "Blog"].map((item) => (
+                {[
+                    { name: "Home", path: "/" },
+                    { name: "About Us", path: "/about-us" },
+                    { name: "Services", path: "/services" },
+                    { name: "Contact", path: "/contact" },
+                    { name: "Blog", path: "/blog" }
+                ].map(({ name, path }) => (
                     <NavLink
-                        key={item}
-                        to={`/${item.toLowerCase()}`}
+                        key={path}
+                        to={path}
                         className="text-lg hover:text-yellow-300 transition-all"
                         onClick={() => setMobileMenuOpen(false)}
                     >
-                        {item}
+                        {name}
                     </NavLink>
                 ))}
                 {userData ? (

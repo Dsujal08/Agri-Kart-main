@@ -13,7 +13,7 @@ const Items = () => {
       {images.map((image, index) => (
         <div 
           key={index} 
-          className="flex items-center justify-center hidden sm:flex" // sm:flex instead of sm:block for better alignment
+          className=" items-center justify-center hidden sm:flex" // sm:flex instead of sm:block for better alignment
         >
           <img
             className="h-40 md:h-60 lg:h-72 w-auto object-contain"
