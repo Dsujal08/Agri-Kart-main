@@ -5,11 +5,14 @@ export const SeedsDetails = () => {
   const navigate = useNavigate(); 
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-green-300 to-green-100 p-5">
-      {/* Back Button */}
-      <h1 onClick={() => navigate("/")} className="absolute top-4 left-4 text-blue-600 font-semibold cursor-pointer hover:underline">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-green-300 to-green-100 p-5 relative">
+      {/* Back Button (Top Left) */}
+      <button
+        onClick={() => navigate("/")}
+        className="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition"
+      >
         ⬅ Back
-      </h1>
+      </button>
 
       <div className="bg-white bg-opacity-80 shadow-2xl rounded-2xl p-8 max-w-3xl w-full backdrop-blur-md border border-green-300">
         <h1 className="text-4xl font-extrabold text-green-800 mb-4 text-center drop-shadow-lg">
@@ -79,6 +82,23 @@ export const SeedsDetails = () => {
           <p className="text-gray-800 mt-2 text-lg">
             In plants like beans, grams, and peas, the endosperm is absent in the mature seed, making them non-endospermous.
           </p>
+        </div>
+
+        {/* Navigation Buttons */}
+        <div className="flex justify-between mt-6">
+          <button
+            onClick={() => navigate('/')} // Navigate back in history
+            className="bg-gray-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-600 transition"
+          >
+            ⬅ Back
+          </button>
+
+          <button
+            onClick={() => navigate("/FerDetails")} // Update this to the actual next page
+            className="bg-green-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition"
+          >
+            Next ➡
+          </button>
         </div>
       </div>
     </div>

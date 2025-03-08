@@ -10,7 +10,7 @@ const Fer_Detail = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
-  const { addToCart, cart } = useCart();
+  const { addToCart, cart = [] } = useCart(); // ✅ Ensure cart defaults to an empty array
   const [selectedImage, setSelectedImage] = useState("");
 
   // Find the product
@@ -18,11 +18,11 @@ const Fer_Detail = () => {
 
   useEffect(() => {
     if (!detail) {
-      navigate("/");
+      navigate("/product");
       return;
     }
-    setSelectedImage(detail.image || "/fallback-image.jpg"); // Default image if missing
-  }, [slug, navigate]);
+    setSelectedImage(detail.image || "/product");
+  }, [detail, navigate]); // ✅ Added `detail` dependency
 
   if (!detail) return <p className="text-center text-gray-500">Loading product details...</p>;
 
@@ -52,7 +52,7 @@ const Fer_Detail = () => {
       name: detail.name,
       price: discountedPrice,
       originalPrice: detail.price,
-      image: detail.image || "/fallback-image.jpg",
+      image: detail.image || "",
       quantity,
       discount: detail.discount || 0,
     });
