@@ -17,7 +17,7 @@ const articles = [
     description:
       "Tesla has announced a new autopilot feature that will significantly improve the driving experience. The company is set to roll out updates this month.",
     imgSrc: "/images/2.png",
-    link: "/articles/tesla-autopilot",
+    link: "/fertilizers",
   },
   {
     title: "Sustainable Farming Trends",

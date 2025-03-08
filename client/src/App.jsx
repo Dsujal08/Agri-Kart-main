@@ -14,7 +14,9 @@ import ProductDetail from './Seeds/Details';  // ✅ Import ProductDetail
 import { CartProvider } from './Seeds/Cart';
 import { Checkout } from './Checkout/Checkout';
 import { SeedsDetails } from './Seeds/Seeds_details';
-
+import FerLayout from './Fertilizers/Ferlayout'
+import HomeFer from './Fertilizers/HomeFer'
+import Fer_Detail from './Fertilizers/FerDetails';
 const App = () => {
   return (
     <CartProvider>
@@ -29,14 +31,19 @@ const App = () => {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/seedsDetails" element={<SeedsDetails />} />
-
+          
           {/* Seeds Section with Layout */}
           <Route path="/seeds" element={<Layout />}>
             <Route index element={<Homeseeds />} />
           </Route>
+          <Route path="/fertilizers" element={<FerLayout />}>
+            <Route index element={<HomeFer />} />
+          </Route>
 
           {/* Product Detail Page should be outside */}
           <Route path="/product/:slug" element={<ProductDetail />} />
+          
+          <Route path="/product/:slug" element={<Fer_Detail />} />
         </Routes>
       </div>
     </CartProvider>

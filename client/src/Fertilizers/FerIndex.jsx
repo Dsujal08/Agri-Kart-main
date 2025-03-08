@@ -2,7 +2,7 @@ import React, { createContext, useContext, useReducer, useEffect } from "react";
 
 const CartContext = createContext();
 
-// ✅ Safe Initial Cart State
+// ✅ Get initial cart state (Handles corrupt data safely)
 const getInitialCartState = () => {
   try {
     return {
@@ -15,36 +15,35 @@ const getInitialCartState = () => {
   }
 };
 
-// ✅ Reducer Function
+// ✅ Cart reducer function
 const cartReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_CART": {
       const { productId, name, price, image, quantity = 1 } = action.payload;
-      const existingItem = state.items.find((item) => item.productId === productId);
+      const existingItemIndex = state.items.findIndex((item) => item.productId === productId);
 
-      // ✅ Ensure stock limit (optional, depends on business logic)
-      const updatedItems = existingItem
-        ? state.items.map((item) =>
-            item.productId === productId
-              ? { ...item, quantity: Math.min(item.quantity + quantity, 99) } // Prevent excessive quantity
-              : item
-          )
-        : [...state.items, { productId, name, price, image, quantity }];
+      const updatedItems =
+        existingItemIndex >= 0
+          ? state.items.map((item, index) =>
+              index === existingItemIndex ? { ...item, quantity: item.quantity + quantity } : item
+            )
+          : [...state.items, { productId, name, price, image, quantity }];
 
       return { ...state, items: updatedItems };
     }
 
     case "CHANGE_QUANTITY": {
       const { productId, quantity } = action.payload;
-      if (quantity <= 0) {
-        return { ...state, items: state.items.filter((item) => item.productId !== productId) };
-      }
-      return {
-        ...state,
-        items: state.items.map((item) =>
-          item.productId === productId ? { ...item, quantity } : item
-        ),
-      };
+
+      // ✅ Remove item if quantity is 0
+      const updatedItems =
+        quantity > 0
+          ? state.items.map((item) =>
+              item.productId === productId ? { ...item, quantity } : item
+            )
+          : state.items.filter((item) => item.productId !== productId);
+
+      return { ...state, items: updatedItems };
     }
 
     case "REMOVE_FROM_CART":
@@ -63,15 +62,19 @@ const cartReducer = (state, action) => {
 
 // ✅ Cart Provider Component
 export const CartProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(cartReducer, getInitialCartState());
+  const [state, dispatch] = useReducer(cartReducer, undefined, getInitialCartState);
 
-  // ✅ Sync cart with localStorage efficiently
+  // ✅ Sync state with localStorage (only when `items` change)
   useEffect(() => {
     localStorage.setItem("carts", JSON.stringify(state.items));
   }, [state.items]);
 
-  return <CartContext.Provider value={{ state, dispatch }}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider value={{ state, dispatch }}>
+      {children}
+    </CartContext.Provider>
+  );
 };
 
-// ✅ Custom Hook for Cart Access
+// ✅ Custom Hook for Cart
 export const useCart = () => useContext(CartContext);

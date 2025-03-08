@@ -15,7 +15,7 @@ const articles = [
     name: "Fertilizers", 
     imgSrc: "/src/images/fruits.png", 
     review: "100% organic farm-fresh vegetables.", 
-    link: "/Fertilizers" 
+    link: "/fertilizers" 
   },
   { 
     name: "Organic Fruits", 

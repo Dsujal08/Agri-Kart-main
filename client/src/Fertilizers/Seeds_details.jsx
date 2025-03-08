@@ -1,8 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
 
 export const SeedsDetails = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate(); // ✅ Initialize navigate
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-green-300 to-green-100 p-5">
