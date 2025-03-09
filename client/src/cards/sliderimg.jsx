@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from "react";
 
 const images = [
   "/src/cards/brands_img/1.0.png",
-  "/src/cards/brands_img/2.0.png",
-  "/src/cards/brands_img/3.0.png",
   "/src/cards/brands_img/4.0.png",
+  "/src/cards/brands_img/3.png",
+  "/src/cards/brands_img/7.png",
 ];
 
 const SliderImg = () => {
@@ -27,7 +27,7 @@ const SliderImg = () => {
   }, []);
 
   return (
-    <div className="w-full py-10 ">
+    <div className="">
     
       <div className="flex justify-center">
         <div
@@ -39,7 +39,7 @@ const SliderImg = () => {
               key={index}
               src={src}
               alt={`Brand ${index + 1}`}
-              className="w-64 h-64 object-contain rounded-xl shadow-md "
+              className="w-80 h-70 object-contain "
             />
           ))}
         </div>

@@ -2,9 +2,9 @@ import React from "react";
 
 const images = [
   { src: "/src/cards/brands_img/1.png", alt: "Brand 1" },
+  { src: "/src/cards/brands_img/5.png", alt: "Brand 3" },
   { src: "/src/cards/brands_img/2.png", alt: "Brand 2" },
-  { src: "/src/cards/brands_img/3.png", alt: "Brand 3" },
-  { src: "/src/cards/brands_img/4.png", alt: "Brand 4" }
+  { src: "/src/cards/brands_img/7.png", alt: "Brand 4" }
 ];
 
 const Items = () => {

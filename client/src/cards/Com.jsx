@@ -27,14 +27,14 @@ const articles = [
     imgSrc: "https://i.pinimg.com/474x/2b/de/07/2bde0710331223ff678edddc705af4a4.jpg",
     link: "/articles/sustainable-farming",
   },
-  {
-    title: "Renewable Energy Innovations",
-    category: "Energy",
-    description:
-      "New breakthroughs in renewable energy technology are making it more affordable and accessible for homes and businesses worldwide.",
-    imgSrc: "/images/4.png",
-    link: "/articles/renewable-energy",
-  },
+  // {
+  //   title: "Renewable Energy Innovations",
+  //   category: "Energy",
+  //   description:
+  //     "New breakthroughs in renewable energy technology are making it more affordable and accessible for homes and businesses worldwide.",
+  //   imgSrc: "/images/4.png",
+  //   link: "/articles/renewable-energy",
+  // },
 ];
 
 const ArticleCard = ({ title, category, description, imgSrc, link }) => (

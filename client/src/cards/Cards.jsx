@@ -24,12 +24,12 @@ const articles = [
     review: "Pesticide-free delicious fresh fruits.", 
     link: "/organicfruits" 
   },
-  { 
-    name: "Dairy Products", 
-    imgSrc: "/src/images/fruits.png", 
-    review: "Pure and organic dairy for a healthy life.", 
-    link: "/products/dairy" 
-  }
+  // { 
+  //   name: "Dairy Products", 
+  //   imgSrc: "/src/images/fruits.png", 
+  //   review: "Pure and organic dairy for a healthy life.", 
+  //   link: "/products/dairy" 
+  // }
 ];
 
 // Slider settings

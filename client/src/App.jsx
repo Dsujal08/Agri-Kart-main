@@ -22,6 +22,9 @@ import BrandsPage from './cards/BrandsPage';
 import Services from './pages/Services'
 import ContactUs from './pages/ContactUs'
 import OrganicFruits from './cards/organicfruits'
+import SchemeDetails from './Schemes/SchemeDetails'
+import Scheme from './Schemes/Schemes';
+import Features from './components/Features';
 const App = () => {
   return (
     <CartProvider>
@@ -39,7 +42,12 @@ const App = () => {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/organicfruits" element={<OrganicFruits />} />
+          <Route path="/features" element={<Features />} />
 
+
+          <Route path="/" element={<Scheme />} />
+          <Route path="/scheme/:id" element={<SchemeDetails />} />
+          
           {/* Seeds Section */}
           <Route path="/seedsDetails" element={<SeedsDetails />} />
           <Route path="/seeds" element={<Layout />}>

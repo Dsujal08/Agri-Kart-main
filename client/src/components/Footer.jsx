@@ -6,6 +6,7 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          
           {/* ✅ Brand & Socials */}
           <div>
             <h2 className="text-3xl font-bold tracking-wide text-white">AgriꞰart🌿</h2>
@@ -17,7 +18,7 @@ const Footer = () => {
                 <a
                   key={index}
                   href="#"
-                  className="text-gray-400 hover:text-blue-500 transition duration-300 text-xl"
+                  className="text-gray-400 hover:text-blue-500 transition duration-300"
                 >
                   <Icon size={24} />
                 </a>
@@ -29,10 +30,15 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold uppercase text-gray-300">Company</h3>
             <ul className="mt-4 space-y-3">
-              {["About", "Features", "Works", "Career"].map((item) => (
-                <li key={item}>
-                  <a href="/AboutUs" className="text-gray-400 hover:text-white transition duration-300">
-                    {item}
+              {[
+                { name: "About", link: "/about-us" },
+                { name: "Features", link: "/features" },
+                { name: "Works", link: "/works" },
+                { name: "Career", link: "/career" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <a href={item.link} className="text-gray-400 hover:text-white transition duration-300">
+                    {item.name}
                   </a>
                 </li>
               ))}
@@ -43,7 +49,12 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold uppercase text-gray-300">Support</h3>
             <ul className="mt-4 space-y-3">
-              {["Customer Support", "Delivery Details", "Terms & Conditions", "Privacy Policy"].map((item) => (
+              {[
+                "Customer Support",
+                "Delivery Details",
+                "Terms & Conditions",
+                "Privacy Policy",
+              ].map((item) => (
                 <li key={item}>
                   <a href="#" className="text-gray-400 hover:text-white transition duration-300">
                     {item}
