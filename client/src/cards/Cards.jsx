@@ -22,7 +22,7 @@ const articles = [
     name: "Organic Fruits", 
     imgSrc: "/src/images/Organic.png ", 
     review: "Pesticide-free delicious fresh fruits.", 
-    link: "/products/fruits" 
+    link: "/organicfruits" 
   },
   { 
     name: "Dairy Products", 

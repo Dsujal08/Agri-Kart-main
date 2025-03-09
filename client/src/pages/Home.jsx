@@ -6,6 +6,7 @@ import Com from '../cards/Com';
 import Footer from '../components/Footer'
 import Brands from '../cards/Brands';
 import Items from '../cards/items'
+import Sliderimg from '../cards/sliderimg'
 const Home = () => {
   return (
     <div>
@@ -15,6 +16,7 @@ const Home = () => {
         <Cards  />
         <Items/>
         <Com />
+        <Sliderimg/>
         <Brands/>
         <Footer/>
         

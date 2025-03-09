@@ -1,9 +1,9 @@
 import React from "react";
 import { useCart } from "./Cart";
-import { Trash2 } from "lucide-react"; // Using an icon for better UX
+import { Trash2 } from "lucide-react";
 
 const CartItem = ({ data }) => {
-    const { productId, name, price, image, quantity } = data;
+    const { productId, name, price, image, quantity, stock } = data;
     const { changeQuantity, removeFromCart } = useCart();
 
     if (!productId || !name || !price || !image) return null;
@@ -15,35 +15,42 @@ const CartItem = ({ data }) => {
     };
 
     const handleIncrease = () => {
-        changeQuantity(productId, quantity + 1);
+        if (quantity < stock) {
+            changeQuantity(productId, quantity + 1);
+        }
     };
 
     return (
-        <div className="flex items-center gap-4 bg-gray-900 text-white p-4 rounded-lg shadow-md hover:shadow-xl transition duration-200">
+        <div className="flex items-center gap-4 bg-white p-4 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300">
             {/* Product Image */}
-            <img src={image} alt={name} className="w-16 h-16 rounded-lg object-cover border border-gray-700" />
+            <img 
+                src={image} 
+                alt={name} 
+                className="w-16 h-16 rounded-lg object-cover border border-gray-300" 
+            />
 
             {/* Product Details */}
             <div className="flex-1">
-                <h3 className="text-lg font-semibold">{name}</h3>
-                <p className="text-sm text-gray-400">Price: ₹{price.toFixed(2)}</p>
-                <p className="text-sm text-green-400 font-medium">Total: ₹{(Number(price) * quantity).toFixed(2)}</p>
+                <h3 className="text-lg font-semibold text-gray-900">{name}</h3>
+                <p className="text-sm text-gray-500">Price: ₹{price.toFixed(2)}</p>
+                <p className="text-sm text-green-600 font-medium">Total: ₹{(Number(price) * quantity).toFixed(2)}</p>
             </div>
 
             {/* Quantity Controls */}
             <div className="flex items-center gap-2">
                 <button
-                    className="bg-gray-700 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold hover:bg-gray-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-gray-200 text-gray-700 rounded-full w-8 h-8 flex items-center justify-center font-bold hover:bg-gray-300 transition disabled:opacity-50 disabled:cursor-not-allowed"
                     onClick={handleDecrease}
                     disabled={quantity === 1}
                     aria-label={`Decrease quantity of ${name}`}
                 >
                     −
                 </button>
-                <span className="text-lg font-bold">{quantity}</span>
+                <span className="text-lg font-bold text-gray-900">{quantity}</span>
                 <button
-                    className="bg-gray-700 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold hover:bg-gray-600 transition"
+                    className="bg-gray-200 text-gray-700 rounded-full w-8 h-8 flex items-center justify-center font-bold hover:bg-gray-300 transition disabled:opacity-50 disabled:cursor-not-allowed"
                     onClick={handleIncrease}
+                    disabled={quantity >= stock}
                     aria-label={`Increase quantity of ${name}`}
                 >
                     +
@@ -52,7 +59,7 @@ const CartItem = ({ data }) => {
 
             {/* Remove Button */}
             <button
-                className="bg-red-600 hover:bg-red-700 text-white p-2 rounded-lg transition active:scale-95 flex items-center gap-1"
+                className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg transition active:scale-95 flex items-center gap-1 shadow-sm"
                 onClick={() => removeFromCart(productId)}
                 aria-label={`Remove ${name} from cart`}
             >

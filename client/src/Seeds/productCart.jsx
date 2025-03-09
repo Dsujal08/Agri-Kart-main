@@ -6,7 +6,7 @@ import { AppContent } from "../content/AppContent";
 import { toast } from "react-toastify";
 
 const ProductCart = ({ data }) => {
-    const { addToCart, cart = [] } = useCart(); // Ensure cart is always an array
+    const { addToCart, cart = [] } = useCart();
     const { userData } = useContext(AppContent);
     const navigate = useNavigate();
     const timeoutRef = useRef(null);
@@ -17,7 +17,7 @@ const ProductCart = ({ data }) => {
 
     const discountedPrice = discount ? Math.round(price - (price * discount) / 100) : price;
     const formattedPrice = (amount) => new Intl.NumberFormat("en-IN").format(amount);
-    
+
     const cartItem = cart.find((item) => item.productId === id) || null;
     const totalQuantity = cartItem ? cartItem.quantity : 0;
     const isOutOfStock = totalQuantity >= stock;
@@ -56,19 +56,23 @@ const ProductCart = ({ data }) => {
     }, []);
 
     return (
-        <div className="bg-white p-4 rounded-xl shadow-lg hover:shadow-2xl transition-transform hover:-translate-y-1 duration-300 relative flex flex-col">
+        <div className="bg-white p-5 rounded-xl shadow-lg hover:shadow-2xl transition-transform hover:-translate-y-1 duration-300 relative flex flex-col border border-gray-200">
+            
+            {/* Category Tag */}
             {category && (
-                <span className="absolute top-3 left-3 bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full uppercase">
+                <span className="absolute top-3 left-3 bg-green-200 text-green-700 text-xs font-bold px-3 py-1 rounded-full uppercase">
                     {category}
                 </span>
             )}
 
+            {/* Discount Badge */}
             {discount > 0 && (
                 <span className="absolute top-3 right-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md animate-pulse">
                     {discount}% OFF
                 </span>
             )}
 
+            {/* Product Image */}
             <Link to={`/product/${slug}`} className="block">
                 <div className="relative">
                     <img
@@ -80,10 +84,13 @@ const ProductCart = ({ data }) => {
                 </div>
             </Link>
 
-            <div className="flex flex-col items-center text-center mt-4">
-                <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
+            {/* Product Details */}
+            <div className="text-center mt-4">
+                <h3 className="text-lg font-semibold text-gray-900">{name}</h3>
                 <p className="text-sm text-gray-600 mt-1">{description.slice(0, 50)}...</p>
-                <p className="text-lg font-bold text-green-600 mt-2">
+
+                {/* Price Section */}
+                <p className="text-xl font-bold text-green-600 mt-2">
                     {discount ? (
                         <>
                             <span className="text-red-500 line-through text-sm mr-2">₹{formattedPrice(price)}</span>
@@ -93,8 +100,14 @@ const ProductCart = ({ data }) => {
                         `₹${formattedPrice(price)}`
                     )}
                 </p>
+
+                {/* Stock Availability */}
+                <p className={`text-sm font-medium mt-2 ${stock < 3 ? "text-red-500" : "text-gray-600"}`}>
+                    {stock > 0 ? `Stock Available: ${stock}` : "Out of Stock"}
+                </p>
             </div>
 
+            {/* Add to Cart Button */}
             <div className="mt-4 relative">
                 <button
                     className={`w-full px-4 py-2 rounded-lg shadow-md flex items-center justify-center gap-2 

@@ -21,6 +21,7 @@ import Brands from './cards/Brands';
 import BrandsPage from './cards/BrandsPage';
 import Services from './pages/Services'
 import ContactUs from './pages/ContactUs'
+import OrganicFruits from './cards/organicfruits'
 const App = () => {
   return (
     <CartProvider>
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/organicfruits" element={<OrganicFruits />} />
 
           {/* Seeds Section */}
           <Route path="/seedsDetails" element={<SeedsDetails />} />
