@@ -8,23 +8,23 @@ const articles = [
     category: "Agriculture",
     description:
       "A seed is a fertilized, mature ovule that encapsulates an embryonic plant, nutrient reserves, and a protective outer layer, ensuring survival and propagation.",
-  imgSrc: "/[p[src/images/Seeds-Banner.png", 
+  imgSrc: "https://i.pinimg.com/474x/de/53/6c/de536cf2a0530292bc38b6bdc97e1786.jpg", 
     link: "/seeds",
   },
   {
-    title: "Tesla Introduces New Autopilot Feature",
-    category: "Technology",
+    title: "Fertilizers",
+    category: "Agriculture",
     description:
-      "Tesla has announced a new autopilot feature that will significantly improve the driving experience. The company is set to roll out updates this month.",
-    imgSrc: "/images/2.png",
+      "Fertilizers are substances added to soil or plants to provide essential nutrients, such as nitrogen, phosphorus, and potassium, that promote plant growth and improve crop yields.",
+    imgSrc: "https://i.pinimg.com/474x/7d/d0/41/7dd0412f3272d107fe3eb08e6eb9614d.jpg",
     link: "/fertilizers",
   },
   {
-    title: "Sustainable Farming Trends",
+    title: "Insecticides",
     category: "Agriculture",
     description:
-      "With the rise of organic farming, many farmers are adopting sustainable practices that improve productivity while protecting the environment.",
-    imgSrc: "/images/3.png",
+      "Insecticides are chemical or natural substances used to control, repel, or eliminate insects that can damage crops, plants, and structures.",
+    imgSrc: "https://i.pinimg.com/474x/2b/de/07/2bde0710331223ff678edddc705af4a4.jpg",
     link: "/articles/sustainable-farming",
   },
   {

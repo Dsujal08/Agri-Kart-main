@@ -84,13 +84,14 @@ const CartTab = () => {
                         Close
                     </button>
                     <button
-                        className={`py-3 rounded-md text-white font-semibold text-lg transition 
-                        ${hasOutOfStockItems ? "bg-gray-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"}`}
-                        onClick={() => !hasOutOfStockItems && navigate("/checkout")}
-                        disabled={hasOutOfStockItems}
-                    >
-                        Checkout →
-                    </button>
+    className={`py-3 rounded-md text-white font-semibold text-lg transition 
+    ${hasOutOfStockItems || cartWithPrices.length === 0 ? "bg-gray-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"}`}
+    onClick={() => !hasOutOfStockItems && cartWithPrices.length > 0 && navigate("/checkout")}
+    disabled={hasOutOfStockItems || cartWithPrices.length === 0}
+>
+    Checkout →
+</button>
+
                 </div>
             </div>
         </div>
